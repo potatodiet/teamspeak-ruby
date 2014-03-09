@@ -1,0 +1,15 @@
+language: ruby
+rvm:
+  - 2.1.0
+  - 2.0.0
+  - 1.9.3
+script:
+  # http://forum.teamspeak.com/showthread.php/68827-Failed-to-register-local-accounting-service
+  - sudo mount -t tmpfs tmpfs /dev/shm
+  - wget http://dl.4players.de/ts/releases/3.0.10.3/teamspeak3-server_linux-amd64-3.0.10.3.tar.gz
+  - tar xzf teamspeak3-server_linux-amd64-3.0.10.3.tar.gz
+  - cd teamspeak3-server_linux-amd64
+  - ./ts3server_startscript.sh start serveradmin_password=travis_test
+  - sleep 10
+  - cd ../tests/
+  - ruby test.rb
