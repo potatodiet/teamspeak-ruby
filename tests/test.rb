@@ -1,9 +1,24 @@
+require 'minitest/autorun'
 require_relative '../lib/teamspeak-ruby'
 
-ts = Teamspeak.new('127.0.0.1')
-ts.login('serveradmin', 'travis_test')
-ts.command('use', {'sid' => 1})
+class TeamspeakTest < MiniTest::Unit::TestCase
+  def setup
+    @ts = Teamspeak.new
+    @ts.login('serveradmin', 'travis_test')
+    @ts.command('use', {'sid' => 1})
+  end
 
-puts ts.command('hostinfo')
+  def test_get_hostinfo
+    assert(@ts.command('hostinfo').first['host_timestamp_utc'])
+  end
 
-ts.disconnect
+  def test_get_clients
+    @ts.command('clientlist').each do |user|
+      assert(user['client_nickname'])
+    end
+  end
+
+  def teardown
+    @ts.disconnect
+  end
+end
