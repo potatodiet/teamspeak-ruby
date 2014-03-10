@@ -33,4 +33,5 @@ ts.disconnect
 TODO
 ----------
 - Proper error handling.
-- Automatic testing
+- ~~Automatic testing~~
+- Documentation
