@@ -1,7 +1,10 @@
 teamspeak-ruby
 ----------
-Ruby interface for TeamSpeak 3's [server query](http://media.teamspeak.com/ts3_literature/
-TeamSpeak%203%20Server%20Query%20Manual.pdf) api.
+[![Build Status](https://travis-ci.org/pyrohail/teamspeak-ruby.png?branch=master)]
+(https://travis-ci.org/pyrohail/teamspeak-ruby)
+
+Ruby interface for TeamSpeak 3's [server query]
+(http://media.teamspeak.com/ts3_literature/TeamSpeak%203%20Server%20Query%20Manual.pdf) api.
 
 Install
 ----------
