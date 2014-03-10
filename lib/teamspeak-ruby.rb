@@ -69,7 +69,7 @@ class Teamspeak
 
       out.push(data)
     end
-    
+
     return out
   end
 
@@ -88,7 +88,6 @@ class Teamspeak
 
     return param
   end
-
 
   def encode_param(param)
     param = param.gsub('\\', '\\\\')
