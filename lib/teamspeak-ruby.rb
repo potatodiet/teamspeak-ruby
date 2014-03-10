@@ -69,9 +69,8 @@ class Teamspeak
 
       out.push(data)
     end
-
-    # If array contains only one element, then return only that one element.
-    return out[1] ? out : out.first
+    
+    return out
   end
 
   def decode_param(param)
