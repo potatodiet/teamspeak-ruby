@@ -2,7 +2,7 @@ require 'socket'
 
 class Teamspeak
   def initialize(host = 'localhost', port = 10011)
-    connect(host, port)
+    self.connect(host, port)
   end
 
   def connect(host = 'localhost', port = 10011)
@@ -70,7 +70,8 @@ class Teamspeak
       out.push(data)
     end
 
-    return out
+    # If array contains only one element, then return only that one element.
+    return out[1] ? out : out.first
   end
 
   def decode_param(param)
