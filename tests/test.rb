@@ -9,7 +9,7 @@ class TeamspeakTest < MiniTest::Unit::TestCase
   end
 
   def test_get_hostinfo
-    assert(@ts.command('hostinfo').first['host_timestamp_utc'])
+    assert(@ts.command('hostinfo')['host_timestamp_utc'])
   end
 
   def test_get_clients

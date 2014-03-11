@@ -44,13 +44,26 @@ class Teamspeak
 
     while true
       response += @sock.gets
+
+      puts response
       
       if response.index('msg=')
         break
       end
     end
 
-    return parse_response(response)
+    # Array of commands that are expected to return as an array.
+    # Not sure - clientgetids
+    should_be_array = ['bindinglist', 'serverlist', 'servergrouplist', 'servergroupclientlist',
+        'servergroupsbyclientid', 'servergroupclientlist', 'logview', 'channellist',
+        'channelfind', 'channelgrouplist', 'channelgrouppermlist', 'channelpermlist', 'clientlist',
+        'clientfind', 'clientdblist', 'clientdbfind', 'channelclientpermlist', 'permissionlist',
+        'permoverview', 'privilegekeylist', 'messagelist', 'complainlist', 'banlist', 'ftlist',
+        'custominfo']
+
+    parsed_response = parse_response(response)
+
+    return should_be_array.include?(cmd) ? parsed_response : parsed_response.first
   end
 
   def parse_response(response)
