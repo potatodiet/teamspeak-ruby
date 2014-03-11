@@ -1,7 +1,7 @@
 Gem::Specification.new do |s|
   s.name          = 'teamspeak-ruby'
-  s.version       = '0.0.2'
-  s.date          = '2014-03-10'
+  s.version       = '0.0.3'
+  s.date          = '2014-03-11'
   s.summary       = 'Ruby interface for TeamSpeak 3\'s server query api.'
   s.authors       = ['Justin Harrison']
   s.email         = 'justin@pyrohail.com'
