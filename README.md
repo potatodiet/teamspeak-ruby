@@ -29,6 +29,8 @@ ts.command('clientlist').each do |user|
   end
 end
 
+puts ts.command('hostinfo')['host_timestamp_utc']
+
 ts.disconnect
 ```
 
