@@ -18,6 +18,10 @@ class TeamspeakTest < MiniTest::Unit::TestCase
     end
   end
 
+  def test_get_serverinfo
+    assert_equal(@ts.command('serverinfo')['virtualserver_name'], 'TeamSpeak ]I[ Server')
+  end
+
   def teardown
     @ts.disconnect
   end
