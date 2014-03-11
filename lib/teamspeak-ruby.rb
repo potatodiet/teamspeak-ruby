@@ -99,7 +99,7 @@ class Teamspeak
     param = param.gsub('\\t', '\t')
     param = param.gsub('\\v', '\v')
 
-    return param
+    return param == '' ? nil : param
   end
 
   def encode_param(param)
