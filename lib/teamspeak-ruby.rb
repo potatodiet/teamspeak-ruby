@@ -44,8 +44,6 @@ class Teamspeak
 
     while true
       response += @sock.gets
-
-      puts response
       
       if response.index('msg=')
         break
