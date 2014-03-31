@@ -44,8 +44,6 @@ class Teamspeak
 
     while true
       response += @sock.gets
-
-      puts response
       
       if response.index('msg=')
         break
@@ -99,7 +97,7 @@ class Teamspeak
     param = param.gsub('\\t', '\t')
     param = param.gsub('\\v', '\v')
 
-    return param
+    return param == '' ? nil : param
   end
 
   def encode_param(param)
