@@ -2,7 +2,7 @@ require 'socket'
 
 class Teamspeak
   def initialize(host = 'localhost', port = 10011)
-    self.connect(host, port)
+    connect(host, port)
   end
 
   def connect(host = 'localhost', port = 10011)
@@ -25,7 +25,7 @@ class Teamspeak
   end
 
   def login(user, pass)
-    self.command('login', {'client_login_name' => user, 'client_login_password' => pass})
+    command('login', {'client_login_name' => user, 'client_login_password' => pass})
   end
 
   def command(cmd, params = {}, options = '')
@@ -64,6 +64,7 @@ class Teamspeak
     return should_be_array.include?(cmd) ? parsed_response : parsed_response.first
   end
 
+  private
   def parse_response(response)
     out = []
 
@@ -84,6 +85,7 @@ class Teamspeak
     return out
   end
 
+  private
   def decode_param(param)
     param = param.gsub('\\\\', '\\')
     param = param.gsub('\\/', '/')
@@ -100,6 +102,7 @@ class Teamspeak
     return param == '' ? nil : param
   end
 
+  private
   def encode_param(param)
     param = param.gsub('\\', '\\\\')
     param = param.gsub('/', '\\/')
