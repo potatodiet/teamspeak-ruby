@@ -85,7 +85,7 @@ module Teamspeak
         key.split(' ').each do |key|
           value = key.split('=')
 
-          data[value[0]] = decode_param(value[1].to_s)
+          data[value[0]] = decode_param(value[1])
         end
 
         out.push(data)
@@ -97,6 +97,10 @@ module Teamspeak
     end
 
     def decode_param(param)
+      return nil unless param
+      # Return as integer if possible
+      return param.to_i if param.to_i.to_s == param 
+
       param.gsub!('\\\\', '\\')
       param.gsub!('\\/', '/')
       param.gsub!('\\s', ' ')
@@ -109,7 +113,7 @@ module Teamspeak
       param.gsub!('\\t', '\t')
       param.gsub!('\\v', '\v')
 
-      return param == '' ? nil : param
+      return param
     end
 
     def encode_param(param)
@@ -132,7 +136,7 @@ module Teamspeak
       id = response.first['id']
       message = response.first['msg']
 
-      raise ServerError.new(id, message) unless id.to_i == 0
+      raise ServerError.new(id, message) unless id == 0
     end
 
     private(:parse_response, :decode_param, :encode_param, :check_response_error)
