@@ -50,9 +50,3 @@ rescue Teamspeak::ServerError => error
   error.message  #=> 'server is not running'
 end
 ```
-
-TODO
-----------
-- Proper error handling.
-- ~~Automatic testing~~
-- Documentation
