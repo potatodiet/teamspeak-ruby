@@ -2,6 +2,9 @@ require 'socket'
 
 module Teamspeak
   class Client
+    # Connects to a TeamSpeak 3 server
+    #
+    #   connect('voice.domain.com', 88888)
     def initialize(host = 'localhost', port = 10011)
       connect(host, port)
     end
@@ -94,33 +97,33 @@ module Teamspeak
     end
 
     def decode_param(param)
-      param = param.gsub('\\\\', '\\')
-      param = param.gsub('\\/', '/')
-      param = param.gsub('\\s', ' ')
-      param = param.gsub('\\p', '|')
-      param = param.gsub('\\a', '\a')
-      param = param.gsub('\\b', '\b')
-      param = param.gsub('\\f', '\f')
-      param = param.gsub('\\n', '\n')
-      param = param.gsub('\\r', '\r')
-      param = param.gsub('\\t', '\t')
-      param = param.gsub('\\v', '\v')
+      param.gsub!('\\\\', '\\')
+      param.gsub!('\\/', '/')
+      param.gsub!('\\s', ' ')
+      param.gsub!('\\p', '|')
+      param.gsub!('\\a', '\a')
+      param.gsub!('\\b', '\b')
+      param.gsub!('\\f', '\f')
+      param.gsub!('\\n', '\n')
+      param.gsub!('\\r', '\r')
+      param.gsub!('\\t', '\t')
+      param.gsub!('\\v', '\v')
 
       return param == '' ? nil : param
     end
 
     def encode_param(param)
-      param = param.gsub('\\', '\\\\')
-      param = param.gsub('/', '\\/')
-      param = param.gsub(' ', '\\s')
-      param = param.gsub('|', '\\p')
-      param = param.gsub('\a', '\\a')
-      param = param.gsub('\b', '\\b')
-      param = param.gsub('\f', '\\f')
-      param = param.gsub('\n', '\\n')
-      param = param.gsub('\r', '\\r')
-      param = param.gsub('\t', '\\t')
-      param = param.gsub('\v', '\\v')
+      param.gsub!('\\', '\\\\')
+      param.gsub!('/', '\\/')
+      param.gsub!(' ', '\\s')
+      param.gsub!('|', '\\p')
+      param.gsub!('\a', '\\a')
+      param.gsub!('\b', '\\b')
+      param.gsub!('\f', '\\f')
+      param.gsub!('\n', '\\n')
+      param.gsub!('\r', '\\r')
+      param.gsub!('\t', '\\t')
+      param.gsub!('\v', '\\v')
 
       return param
     end
