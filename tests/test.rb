@@ -5,7 +5,7 @@ require 'teamspeak-ruby'
 
 class TeamspeakTest < MiniTest::Unit::TestCase
   def setup
-    @ts = Teamspeak.new
+    @ts = Teamspeak::Client.new
     @ts.login('serveradmin', 'travis_test')
     @ts.command('use', {'sid' => 1})
   end
