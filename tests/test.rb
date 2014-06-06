@@ -1,5 +1,7 @@
 require 'minitest/autorun'
-require_relative '../lib/teamspeak-ruby'
+
+$LOAD_PATH << File.join(File.dirname(__FILE__), '..', 'lib')
+require 'teamspeak-ruby'
 
 class TeamspeakTest < MiniTest::Unit::TestCase
   def setup
