@@ -1,6 +1,8 @@
+require './lib/teamspeak-ruby/version'
+
 Gem::Specification.new do |s|
   s.name          = 'teamspeak-ruby'
-  s.version       = '0.0.4'
+  s.version       = Teamspeak::VERSION
   s.date          = '2014-03-31'
   s.summary       = 'Ruby interface for TeamSpeak 3\'s server query api.'
   s.authors       = ['Justin Harrison']
