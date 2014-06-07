@@ -2,7 +2,7 @@ require 'socket'
 
 module Teamspeak
   class Client
-    # Connects to a TeamSpeak 3 server
+    # Initializes Client
     #
     #   connect('voice.domain.com', 88888)
     def initialize(host = 'localhost', port = 10011)
