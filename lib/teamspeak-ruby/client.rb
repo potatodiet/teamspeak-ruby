@@ -133,8 +133,8 @@ module Teamspeak
     end
 
     def check_response_error(response)
-      id = response.first['id']
-      message = response.first['msg']
+      id = response.first['id'] || 0
+      message = response.first['msg'] || 0
 
       raise ServerError.new(id, message) unless id == 0
     end
