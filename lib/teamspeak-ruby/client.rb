@@ -93,7 +93,7 @@ module Teamspeak
 
       check_response_error(out)
 
-      return out
+      out
     end
 
     def decode_param(param)
@@ -113,7 +113,7 @@ module Teamspeak
       param.gsub!('\\t', '\t')
       param.gsub!('\\v', '\v')
 
-      return param
+      param
     end
 
     def encode_param(param)
@@ -129,7 +129,7 @@ module Teamspeak
       param.gsub!('\t', '\\t')
       param.gsub!('\v', '\\v')
 
-      return param
+      param
     end
 
     def check_response_error(response)
