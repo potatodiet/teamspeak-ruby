@@ -41,19 +41,21 @@ module Teamspeak
     #
     #   command('use', {'sid' => 1}, '-away')
     def command(cmd, params = {}, options = '')
-      out = cmd
+      out = ''
       response = ''
 
+      out += cmd
+
       params.each_pair do |key, value|
-        out << " #{key}=#{encode_param(value.to_s)}"
+        out += " #{key}=#{encode_param(value.to_s)}"
       end
 
-      out << ' ' + options
+      out += ' ' + options
 
       @sock.puts out
 
       while true
-        response << @sock.gets
+        response += @sock.gets
         
         if response.index('msg=')
           break
