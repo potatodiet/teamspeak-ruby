@@ -64,12 +64,14 @@ module Teamspeak
 
       # Array of commands that are expected to return as an array.
       # Not sure - clientgetids
-      should_be_array = ['bindinglist', 'serverlist', 'servergrouplist', 'servergroupclientlist',
-          'servergroupsbyclientid', 'servergroupclientlist', 'logview', 'channellist',
-          'channelfind', 'channelgrouplist', 'channelgrouppermlist', 'channelpermlist', 'clientlist',
-          'clientfind', 'clientdblist', 'clientdbfind', 'channelclientpermlist', 'permissionlist',
-          'permoverview', 'privilegekeylist', 'messagelist', 'complainlist', 'banlist', 'ftlist',
-          'custominfo']
+      should_be_array = [
+        'bindinglist', 'serverlist', 'servergrouplist', 'servergroupclientlist',
+        'servergroupsbyclientid', 'servergroupclientlist', 'logview', 'channellist',
+        'channelfind', 'channelgrouplist', 'channelgrouppermlist', 'channelpermlist', 'clientlist',
+        'clientfind', 'clientdblist', 'clientdbfind', 'channelclientpermlist', 'permissionlist',
+        'permoverview', 'privilegekeylist', 'messagelist', 'complainlist', 'banlist', 'ftlist',
+        'custominfo'
+      ]
 
       parsed_response = parse_response(response)
 
