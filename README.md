@@ -19,7 +19,7 @@ Usage
 ```ruby
 require 'teamspeak-ruby'
 
-ts = Teamspeak.new('127.0.0.1')
+ts = Teamspeak::Client.new('127.0.0.1')
 ts.login('serveradmin', 'T5I3A1G8')
 ts.command('use', {'sid' => 1})
 
@@ -40,7 +40,7 @@ Error Handling
 require 'teamspeak-ruby'
 
 begin
-  ts = Teamspeak.new('127.0.0.1')
+  ts = Teamspeak::Client.new('127.0.0.1')
   ts.login('serveradmin', 'T5I3A1G8')
   ts.command('use', {'sid' => 27})
 
