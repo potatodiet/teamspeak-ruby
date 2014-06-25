@@ -64,12 +64,14 @@ module Teamspeak
 
       # Array of commands that are expected to return as an array.
       # Not sure - clientgetids
-      should_be_array = ['bindinglist', 'serverlist', 'servergrouplist', 'servergroupclientlist',
-          'servergroupsbyclientid', 'servergroupclientlist', 'logview', 'channellist',
-          'channelfind', 'channelgrouplist', 'channelgrouppermlist', 'channelpermlist', 'clientlist',
-          'clientfind', 'clientdblist', 'clientdbfind', 'channelclientpermlist', 'permissionlist',
-          'permoverview', 'privilegekeylist', 'messagelist', 'complainlist', 'banlist', 'ftlist',
-          'custominfo']
+      should_be_array = [
+        'bindinglist', 'serverlist', 'servergrouplist', 'servergroupclientlist',
+        'servergroupsbyclientid', 'servergroupclientlist', 'logview', 'channellist',
+        'channelfind', 'channelgrouplist', 'channelgrouppermlist', 'channelpermlist', 'clientlist',
+        'clientfind', 'clientdblist', 'clientdbfind', 'channelclientpermlist', 'permissionlist',
+        'permoverview', 'privilegekeylist', 'messagelist', 'complainlist', 'banlist', 'ftlist',
+        'custominfo'
+      ]
 
       parsed_response = parse_response(response)
 
@@ -93,7 +95,7 @@ module Teamspeak
 
       check_response_error(out)
 
-      return out
+      out
     end
 
     def decode_param(param)
@@ -113,7 +115,7 @@ module Teamspeak
       param.gsub!('\\t', '\t')
       param.gsub!('\\v', '\v')
 
-      return param
+      param
     end
 
     def encode_param(param)
@@ -129,7 +131,7 @@ module Teamspeak
       param.gsub!('\t', '\\t')
       param.gsub!('\v', '\\v')
 
-      return param
+      param
     end
 
     def check_response_error(response)
