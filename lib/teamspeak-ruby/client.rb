@@ -57,7 +57,7 @@ module Teamspeak
       while true
         response += @sock.gets
         
-        if response.index('msg=')
+        if response.index(' msg=')
           break
         end
       end
