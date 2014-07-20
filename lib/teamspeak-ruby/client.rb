@@ -85,7 +85,7 @@ module Teamspeak
         data = {}
 
         key.split(' ').each do |key|
-          value = key.split('=')
+          value = key.split('=', 2)
 
           data[value[0]] = decode_param(value[1])
         end
@@ -101,7 +101,7 @@ module Teamspeak
     def decode_param(param)
       return nil unless param
       # Return as integer if possible
-      return param.to_i if param.to_i.to_s == param 
+      return param.to_i if param.to_i.to_s == param
 
       param.gsub!('\\\\', '\\')
       param.gsub!('\\/', '/')
