@@ -20,7 +20,7 @@ Usage
 ```ruby
 require 'teamspeak-ruby'
 
-ts = Teamspeak::Client.new('127.0.0.1')
+ts = Teamspeak::Client.new
 ts.login('serveradmin', 'T5I3A1G8')
 ts.command('use', {'sid' => 1})
 

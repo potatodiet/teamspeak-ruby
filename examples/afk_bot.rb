@@ -8,7 +8,7 @@ require 'teamspeak-ruby'
 AFK_TIME = 30 # AFK time in minutes
 AFK_CHANNEL = 67 # AFK channel clid
 
-ts = Teamspeak::Client.new('direct.pyrohail.com')
+ts = Teamspeak::Client.new
 ts.login('serveradmin', 'T5I3A1G8')
 ts.command('use', {'sid' => 1})
 
