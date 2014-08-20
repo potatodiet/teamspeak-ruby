@@ -1,2 +1,5 @@
 *.gem
+
+# Documentation
 doc/
+.yardoc/
