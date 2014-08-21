@@ -62,7 +62,6 @@ module Teamspeak
       if @flood_protection && @flood_current == @flood_limit
         if Time.now - @flood_timer < @flood_time
           sleep(@flood_time)
-          puts @flood_current
         end
 
         # Reset flood protection
