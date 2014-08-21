@@ -24,6 +24,12 @@ class TeamspeakTest < MiniTest::Unit::TestCase
     assert_equal(@ts.command('serverinfo')['virtualserver_name'], 'TeamSpeak ]I[ Server')
   end
 
+  def test_flood_protection
+    15.times do
+      assert(@ts.command('hostinfo')['host_timestamp_utc'])
+    end
+  end
+
   def teardown
     @ts.disconnect
   end
