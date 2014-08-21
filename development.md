@@ -9,6 +9,6 @@ cd teamspeak3-server_linux-amd64
 
 Testing
 ----------
-```ruby
+```shell
 ruby /tests/test.rb
 ```
