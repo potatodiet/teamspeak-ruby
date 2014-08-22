@@ -16,7 +16,7 @@ module Teamspeak
     def initialize(host = 'localhost', port = 10011)
       connect(host, port)
 
-      # Throttle commands be default unless connection to localhost
+      # Throttle commands by default unless connected to localhost
       @flood_protection = true unless host
       @flood_limit = 10
       @flood_time = 2.9
