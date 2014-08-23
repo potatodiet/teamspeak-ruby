@@ -6,8 +6,7 @@ module Teamspeak
     attr_writer(:flood_protection)
     # Number of commands within flood_time before pausing. Default is 10
     attr_writer(:flood_limit)
-    # Length of time before flood_limit is reset in seconds. Default is 2.9
-    # Make sure to give a little wiggle room
+    # Length of time before flood_limit is reset in seconds. Default is 3
     attr_writer(:flood_time)
 
     # Initializes Client
@@ -19,7 +18,7 @@ module Teamspeak
       # Throttle commands by default unless connected to localhost
       @flood_protection = true unless host
       @flood_limit = 10
-      @flood_time = 2.9
+      @flood_time = 3
 
       @flood_timer = Time.new
       @flood_current = 0
@@ -57,16 +56,21 @@ module Teamspeak
     #
     #   command('use', {'sid' => 1}, '-away')
     def command(cmd, params = {}, options = '')
-      @flood_current += 1 if @flood_protection
+      if @flood_protection
+        @flood_current += 1
 
-      if @flood_protection && @flood_current == @flood_limit
-        if Time.now - @flood_timer < @flood_time
+        flood_time_reached = Time.now - @flood_timer < @flood_time
+        flood_limit_reached = @flood_current == @flood_limit
+
+        if flood_time_reached && flood_limit_reached
           sleep(@flood_time)
         end
 
-        # Reset flood protection
-        @flood_timer = Time.now
-        @flood_current = 0
+        if flood_limit_reached
+          # Reset flood protection
+          @flood_timer = Time.now
+          @flood_current = 0
+        end
       end
 
       out = ''
