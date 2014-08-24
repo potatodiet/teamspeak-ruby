@@ -2,11 +2,26 @@ require 'socket'
 
 module Teamspeak
   class Client
+    # Should commands be throttled? Default is true
+    attr_writer(:flood_protection)
+    # Number of commands within flood_time before pausing. Default is 10
+    attr_writer(:flood_limit)
+    # Length of time before flood_limit is reset in seconds. Default is 3
+    attr_writer(:flood_time)
+
     # Initializes Client
     #
     #   connect('voice.domain.com', 88888)
     def initialize(host = 'localhost', port = 10011)
       connect(host, port)
+
+      # Throttle commands by default unless connected to localhost
+      @flood_protection = true unless host
+      @flood_limit = 10
+      @flood_time = 3
+
+      @flood_timer = Time.new
+      @flood_current = 0
     end
 
     # Connects to a TeamSpeak 3 server
@@ -41,6 +56,23 @@ module Teamspeak
     #
     #   command('use', {'sid' => 1}, '-away')
     def command(cmd, params = {}, options = '')
+      if @flood_protection
+        @flood_current += 1
+
+        flood_time_reached = Time.now - @flood_timer < @flood_time
+        flood_limit_reached = @flood_current == @flood_limit
+
+        if flood_time_reached && flood_limit_reached
+          sleep(@flood_time)
+        end
+
+        if flood_limit_reached
+          # Reset flood protection
+          @flood_timer = Time.now
+          @flood_current = 0
+        end
+      end
+
       out = ''
       response = ''
 

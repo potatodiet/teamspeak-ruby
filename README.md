@@ -7,6 +7,7 @@ teamspeak-ruby
 
 Ruby interface for TeamSpeak 3's [server query]
 (http://media.teamspeak.com/ts3_literature/TeamSpeak%203%20Server%20Query%20Manual.pdf) api.
+Built against the manual released on 2012-02-29.
 
 Install
 ----------
@@ -19,7 +20,7 @@ Usage
 ```ruby
 require 'teamspeak-ruby'
 
-ts = Teamspeak::Client.new('127.0.0.1')
+ts = Teamspeak::Client.new
 ts.login('serveradmin', 'T5I3A1G8')
 ts.command('use', {'sid' => 1})
 
@@ -32,21 +33,4 @@ end
 puts ts.command('hostinfo')['host_timestamp_utc']
 
 ts.disconnect
-```
-
-Error Handling
-----------
-```ruby
-require 'teamspeak-ruby'
-
-begin
-  ts = Teamspeak::Client.new('127.0.0.1')
-  ts.login('serveradmin', 'T5I3A1G8')
-  ts.command('use', {'sid' => 27})
-
-  ts.disconnect
-rescue Teamspeak::ServerError => error
-  error.code  #=> 1033
-  error.message  #=> 'server is not running'
-end
 ```
