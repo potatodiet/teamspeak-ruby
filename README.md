@@ -1,7 +1,7 @@
 teamspeak-ruby
 ----------
-[![Build Status](https://travis-ci.org/pyrohail/teamspeak-ruby.png?branch=master)]
-(https://travis-ci.org/pyrohail/teamspeak-ruby)
+[![Build Status](https://travis-ci.org/matthin/teamspeak-ruby.png?branch=master)]
+(https://travis-ci.org/matthin/teamspeak-ruby)
 [![Gem Version](https://badge.fury.io/rb/teamspeak-ruby.png)]
 (http://badge.fury.io/rb/teamspeak-ruby)
 
