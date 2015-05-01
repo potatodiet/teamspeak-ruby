@@ -51,66 +51,12 @@ module Teamspeak
     def login(user, pass)
       command('login', {'client_login_name' => user, 'client_login_password' => pass})
     end
-
-    def registerevent(isON = false,params = {}, options = '')
-      if @flood_protection
-        @flood_current += 1
-
-        flood_time_reached = Time.now - @flood_timer < @flood_time
-        flood_limit_reached = @flood_current == @flood_limit
-
-        if flood_time_reached && flood_limit_reached
-          sleep(@flood_time)
-        end
-
-        if flood_limit_reached
-          # Reset flood protection
-          @flood_timer = Time.now
-          @flood_current = 0
-        end
-      end
-      response = ''
-      if !isON
-        out = ''
-
-        out += 'servernotifyregister'
-
-        params.each_pair do |key, value|
-          out += " #{key}=#{encode_param(value.to_s)}"
-        end
-
-        out += ' ' + options
-
-        @sock.puts out
-        response += @sock.gets # To remove the first response confirming the command
-      end
-      response += @sock.gets
-
-      parsed_response = parse_response(response)
-
-      return parsed_response
-    end
     
     # Sends command to the TeamSpeak 3 server and returns the response
     #
     #   command('use', {'sid' => 1}, '-away')
     def command(cmd, params = {}, options = '')
-      if @flood_protection
-        @flood_current += 1
-
-        flood_time_reached = Time.now - @flood_timer < @flood_time
-        flood_limit_reached = @flood_current == @flood_limit
-
-        if flood_time_reached && flood_limit_reached
-          sleep(@flood_time)
-        end
-
-        if flood_limit_reached
-          # Reset flood protection
-          @flood_timer = Time.now
-          @flood_current = 0
-        end
-      end
+      flood_control
 
       out = ''
       response = ''
@@ -124,6 +70,11 @@ module Teamspeak
       out += ' ' + options
 
       @sock.puts out
+
+      if cmd == 'servernotifyregister'
+        2.times {response += @sock.gets}
+        return parse_response(response)
+      end
 
       while true
         response += @sock.gets
@@ -212,6 +163,28 @@ module Teamspeak
       raise ServerError.new(id, message) unless id == 0
     end
 
-    private(:parse_response, :decode_param, :encode_param, :check_response_error)
+    def flood_control
+      if @flood_protection
+        @flood_current += 1
+
+        flood_time_reached = Time.now - @flood_timer < @flood_time
+        flood_limit_reached = @flood_current == @flood_limit
+
+        if flood_time_reached && flood_limit_reached
+          sleep(@flood_time)
+        end
+
+        if flood_limit_reached
+          # Reset flood protection
+          @flood_timer = Time.now
+          @flood_current = 0
+        end
+      end
+    end
+
+    private(
+        :parse_response, :decode_param, :encode_param,
+        :check_response_error, :flood_control
+    )
   end
 end
