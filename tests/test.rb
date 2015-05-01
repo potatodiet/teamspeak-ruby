@@ -30,6 +30,19 @@ class TeamspeakTest < MiniTest::Unit::TestCase
     end
   end
 
+  def test_event_notification
+    Thread.new do
+        sleep(0.1)
+        @ts.command('sendtextmessage', {targetmode: 3, target: 0, msg: 'example'})
+    end
+    assert(
+        @ts.command(
+            'servernotifyregister',
+            {event: 'textserver'}
+        )[0]['msg'] == 'example'
+    )
+  end
+
   def teardown
     @ts.disconnect
   end
