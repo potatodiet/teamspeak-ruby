@@ -9,6 +9,21 @@ module Teamspeak
     # Length of time before flood_limit is reset in seconds. Default is 3
     attr_writer(:flood_time)
 
+    # First is escaped char, second is real char.
+    SPECIAL_CHARS = [
+      ['\\\\', '\\'],
+      ['\\/', '/'],
+      ['\\s', ' '],
+      ['\\p', '|'],
+      ['\\a', '\a'],
+      ['\\b', '\b'],
+      ['\\f', '\f'],
+      ['\\n', '\n'],
+      ['\\r', '\r'],
+      ['\\t', '\t'],
+      ['\\v', '\v']
+    ]
+
     # Initializes Client
     #
     #   connect('voice.domain.com', 88888)
@@ -125,33 +140,17 @@ module Teamspeak
       # Return as integer if possible
       return param.to_i if param.to_i.to_s == param
 
-      param.gsub!('\\\\', '\\')
-      param.gsub!('\\/', '/')
-      param.gsub!('\\s', ' ')
-      param.gsub!('\\p', '|')
-      param.gsub!('\\a', '\a')
-      param.gsub!('\\b', '\b')
-      param.gsub!('\\f', '\f')
-      param.gsub!('\\n', '\n')
-      param.gsub!('\\r', '\r')
-      param.gsub!('\\t', '\t')
-      param.gsub!('\\v', '\v')
+      SPECIAL_CHARS.each do |pair|
+        param.gsub!(pair[0], pair[1])
+      end
 
       param
     end
 
     def encode_param(param)
-      param.gsub!('\\', '\\\\')
-      param.gsub!('/', '\\/')
-      param.gsub!(' ', '\\s')
-      param.gsub!('|', '\\p')
-      param.gsub!('\a', '\\a')
-      param.gsub!('\b', '\\b')
-      param.gsub!('\f', '\\f')
-      param.gsub!('\n', '\\n')
-      param.gsub!('\r', '\\r')
-      param.gsub!('\t', '\\t')
-      param.gsub!('\v', '\\v')
+      SPECIAL_CHARS.each do |pair|
+        param.gsub!(pair[1], pair[0])
+      end
 
       param
     end
