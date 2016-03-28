@@ -13,4 +13,4 @@ script:
   - ./ts3server_startscript.sh start serveradmin_password=travis_test
   - sleep 10
   - cd ../tests/
-  - ruby test.rb
+  - bundle exec ruby test.rb
