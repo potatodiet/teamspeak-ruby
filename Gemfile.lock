@@ -1,0 +1,19 @@
+PATH
+  remote: .
+  specs:
+    teamspeak-ruby (1.0.5)
+
+GEM
+  remote: https://rubygems.org/
+  specs:
+    minitest (5.8.4)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  minitest (~> 5.8)
+  teamspeak-ruby!
+
+BUNDLED WITH
+   1.11.2
