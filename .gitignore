@@ -3,3 +3,5 @@
 # Documentation
 doc/
 .yardoc/
+
+.vagrant/
