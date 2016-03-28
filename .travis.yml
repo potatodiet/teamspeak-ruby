@@ -2,7 +2,6 @@ language: ruby
 rvm:
   - 2.1.0
   - 2.0.0
-  - 1.9.3
 script:
   # http://forum.teamspeak.com/showthread.php/68827-Failed-to-register-local-accounting-service
   - sudo mount -t tmpfs tmpfs /dev/shm
