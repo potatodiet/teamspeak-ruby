@@ -11,4 +11,5 @@ Gem::Specification.new do |s|
   s.require_paths = ['lib']
   s.homepage      = 'http://pyrohail.com'
   s.license       = 'MIT'
+  s.add_development_dependency 'minitest', '~> 5.8'
 end
