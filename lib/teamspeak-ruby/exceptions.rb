@@ -1,7 +1,9 @@
 module Teamspeak
-  # Raised when the connected server does not respond as a normal TeamSpeak 3 would.
+  # Raised when the connected server does not respond as a normal
+  # TeamSpeak 3 would.
   #
-  # raise InvalidServer, 'Server is not responding as a normal TeamSpeak 3 server.'
+  # msg = 'Server is not responding as a normal TeamSpeak 3 server.'
+  # raise InvalidServer, msg
   class InvalidServer < StandardError; end
 
   # Raised when the server returns an error code other than 0.

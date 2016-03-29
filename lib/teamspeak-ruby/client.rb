@@ -22,12 +22,12 @@ module Teamspeak
       ['\\r', '\r'],
       ['\\t', '\t'],
       ['\\v', '\v']
-    ]
+    ].freeze
 
     # Initializes Client
     #
     #   connect('voice.domain.com', 88888)
-    def initialize(host = 'localhost', port = 10011)
+    def initialize(host = 'localhost', port = 10_011)
       connect(host, port)
 
       # Throttle commands by default unless connected to localhost
@@ -42,12 +42,13 @@ module Teamspeak
     # Connects to a TeamSpeak 3 server
     #
     #   connect('voice.domain.com', 88888)
-    def connect(host = 'localhost', port = 10011)
+    def connect(host = 'localhost', port = 10_011)
       @sock = TCPSocket.new(host, port)
 
       # Check if the response is the same as a normal teamspeak 3 server.
       if @sock.gets.strip != 'TS3'
-        raise InvalidServer, 'Server is not responding as a normal TeamSpeak 3 server.'
+        msg = 'Server is not responding as a normal TeamSpeak 3 server.'
+        raise InvalidServer, msg
       end
 
       # Remove useless text from the buffer.
@@ -64,9 +65,9 @@ module Teamspeak
     #
     #   login('serveradmin', 'H8YlK1f9')
     def login(user, pass)
-      command('login', {'client_login_name' => user, 'client_login_password' => pass})
+      command('login', client_login_name: user, client_login_password: pass)
     end
-    
+
     # Sends command to the TeamSpeak 3 server and returns the response
     #
     #   command('use', {'sid' => 1}, '-away')
@@ -87,32 +88,30 @@ module Teamspeak
       @sock.puts out
 
       if cmd == 'servernotifyregister'
-        2.times {response += @sock.gets}
+        2.times { response += @sock.gets }
         return parse_response(response)
       end
 
-      while true
+      loop do
         response += @sock.gets
-        
-        if response.index(' msg=')
-          break
-        end
+
+        break if response.index(' msg=')
       end
 
       # Array of commands that are expected to return as an array.
       # Not sure - clientgetids
-      should_be_array = [
-        'bindinglist', 'serverlist', 'servergrouplist', 'servergroupclientlist',
-        'servergroupsbyclientid', 'servergroupclientlist', 'logview', 'channellist',
-        'channelfind', 'channelgrouplist', 'channelgrouppermlist', 'channelpermlist', 'clientlist',
-        'clientfind', 'clientdblist', 'clientdbfind', 'channelclientpermlist', 'permissionlist',
-        'permoverview', 'privilegekeylist', 'messagelist', 'complainlist', 'banlist', 'ftlist',
-        'custominfo'
-      ]
+      should_be_array = %w(
+        bindinglist serverlist servergrouplist servergroupclientlist
+        servergroupsbyclientid servergroupclientlist logview channellist
+        channelfind channelgrouplist channelgrouppermlist channelpermlist
+        clientlist clientfind clientdblist clientdbfind channelclientpermlist
+        permissionlist permoverview privilegekeylist messagelist complainlist
+        banlist ftlist custominfo
+      )
 
       parsed_response = parse_response(response)
 
-      return should_be_array.include?(cmd) ? parsed_response : parsed_response.first
+      should_be_array.include?(cmd) ? parsed_response : parsed_response.first
     end
 
     def parse_response(response)
@@ -121,8 +120,8 @@ module Teamspeak
       response.split('|').each do |key|
         data = {}
 
-        key.split(' ').each do |key|
-          value = key.split('=', 2)
+        key.split(' ').each do |inner_key|
+          value = inner_key.split('=', 2)
 
           data[value[0]] = decode_param(value[1])
         end
@@ -169,9 +168,7 @@ module Teamspeak
         flood_time_reached = Time.now - @flood_timer < @flood_time
         flood_limit_reached = @flood_current == @flood_limit
 
-        if flood_time_reached && flood_limit_reached
-          sleep(@flood_time)
-        end
+        sleep(@flood_time) if flood_time_reached && flood_limit_reached
 
         if flood_limit_reached
           # Reset flood protection
@@ -182,8 +179,8 @@ module Teamspeak
     end
 
     private(
-        :parse_response, :decode_param, :encode_param,
-        :check_response_error, :flood_control
+      :parse_response, :decode_param, :encode_param,
+      :check_response_error, :flood_control
     )
   end
 end

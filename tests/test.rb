@@ -3,11 +3,12 @@ require 'minitest/autorun'
 $LOAD_PATH << File.join(File.dirname(__FILE__), '..', 'lib')
 require 'teamspeak-ruby'
 
+# Main test
 class TeamspeakTest < MiniTest::Unit::TestCase
   def setup
     @ts = Teamspeak::Client.new
     @ts.login('serveradmin', 'travis_test')
-    @ts.command('use', {'sid' => 1})
+    @ts.command('use', sid: 1)
   end
 
   def test_get_hostinfo
@@ -21,7 +22,10 @@ class TeamspeakTest < MiniTest::Unit::TestCase
   end
 
   def test_get_serverinfo
-    assert_equal(@ts.command('serverinfo')['virtualserver_name'], 'TeamSpeak ]I[ Server')
+    assert_equal(
+      @ts.command('serverinfo')['virtualserver_name'],
+      'TeamSpeak ]I[ Server'
+    )
   end
 
   def test_flood_protection
@@ -32,14 +36,14 @@ class TeamspeakTest < MiniTest::Unit::TestCase
 
   def test_event_notification
     Thread.new do
-        sleep(0.1)
-        @ts.command('sendtextmessage', {targetmode: 3, target: 0, msg: 'example'})
+      sleep(0.1)
+      @ts.command('sendtextmessage', targetmode: 3, target: 0, msg: 'example')
     end
     assert(
-        @ts.command(
-            'servernotifyregister',
-            {event: 'textserver'}
-        )[0]['msg'] == 'example'
+      @ts.command(
+        'servernotifyregister',
+        event: 'textserver'
+      )[0]['msg'] == 'example'
     )
   end
 

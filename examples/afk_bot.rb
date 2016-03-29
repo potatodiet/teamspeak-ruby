@@ -10,19 +10,17 @@ AFK_CHANNEL = 67 # AFK channel clid
 
 ts = Teamspeak::Client.new
 ts.login('serveradmin', 'T5I3A1G8')
-ts.command('use', {'sid' => 1})
+ts.command('use', sid: 1)
 
 ts.command('clientlist').each do |user|
-  idle_time = ts.command('clientinfo', {'clid' => user['clid']})['client_idle_time']
+  idle_time = ts.command('clientinfo', clid: user['clid'])['client_idle_time']
 
   # turn milliseconds to seconds to minutes
-  if idle_time / 1000 / 60 >= AFK_TIME
-    if user['cid'] != AFK_CHANNEL
-      ts.command('clientmove', {'clid' => user['clid'], 'cid' => AFK_CHANNEL})
-      ts.command('clientpoke', {'clid' => user['clid'],
-                                'msg' => 'You have been moved to the AFK channel'})
-    end
-  end
+  next unless idle_time / 1000 / 60 >= AFK_TIME
+  next unless user['cid'] != AFK_CHANNEL
+  ts.command('clientmove', clid: user['clid'], cid: AFK_CHANNEL)
+  ts.command('clientpoke', clid: user['clid'],
+                           msg: 'You have been moved to the AFK channel')
 end
 
 ts.disconnect
