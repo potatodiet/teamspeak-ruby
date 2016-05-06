@@ -106,7 +106,7 @@ module Teamspeak
         channelfind channelgrouplist channelgrouppermlist channelpermlist
         clientlist clientfind clientdblist clientdbfind channelclientpermlist
         permissionlist permoverview privilegekeylist messagelist complainlist
-        banlist ftlist custominfo
+        banlist ftlist custominfo permfind
       )
 
       parsed_response = parse_response(response)
