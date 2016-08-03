@@ -8,6 +8,8 @@ module Teamspeak
     attr_writer(:flood_limit)
     # Length of time before flood_limit is reset in seconds. Default is 3
     attr_writer(:flood_time)
+    #raw socket for polling
+    attr_reader(:sock)
 
     # First is escaped char, second is real char.
     SPECIAL_CHARS = [
@@ -53,11 +55,6 @@ module Teamspeak
 
       # Remove useless text from the buffer.
       @sock.gets
-    end
-
-    #access raw socket for polling
-    def raw_socket
-      @sock
     end
 
     # Disconnects from the TeamSpeak 3 server
