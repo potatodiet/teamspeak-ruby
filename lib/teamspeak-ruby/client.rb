@@ -55,6 +55,11 @@ module Teamspeak
       @sock.gets
     end
 
+    #access raw socket for polling
+    def raw_socket
+      @sock
+    end
+
     # Disconnects from the TeamSpeak 3 server
     def disconnect
       @sock.puts 'quit'
