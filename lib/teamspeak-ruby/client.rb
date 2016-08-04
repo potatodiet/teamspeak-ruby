@@ -8,6 +8,8 @@ module Teamspeak
     attr_writer(:flood_limit)
     # Length of time before flood_limit is reset in seconds. Default is 3
     attr_writer(:flood_time)
+    # access the raw socket
+    attr_reader(:sock)
 
     # First is escaped char, second is real char.
     SPECIAL_CHARS = [
