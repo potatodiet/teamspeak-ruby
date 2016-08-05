@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    teamspeak-ruby (1.0.5)
+    teamspeak-ruby (1.0.6)
 
 GEM
   remote: https://rubygems.org/
@@ -16,4 +16,4 @@ DEPENDENCIES
   teamspeak-ruby!
 
 BUNDLED WITH
-   1.11.2
+   1.12.5
