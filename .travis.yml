@@ -15,4 +15,4 @@ before_install:
   - ./setup-test.sh
 
 script:
-  - bundle exec ruby test.rb
+  - bundle exec ruby tests/test.rb
