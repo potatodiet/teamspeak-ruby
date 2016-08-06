@@ -9,6 +9,9 @@ class TeamspeakTest < MiniTest::Unit::TestCase
     @ts = Teamspeak::Client.new
     @ts.login('serveradmin', 'password')
     @ts.command('use', sid: 1)
+
+    # practically disable flood protection
+    @ts.command('instanceedit', serverinstance_serverquery_flood_commands: 999)
   end
 
   def test_get_hostinfo
