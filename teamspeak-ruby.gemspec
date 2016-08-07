@@ -12,4 +12,5 @@ Gem::Specification.new do |s|
   s.homepage      = 'http://pyrohail.com'
   s.license       = 'MIT'
   s.add_development_dependency 'minitest', '~> 5.8'
+  s.add_development_dependency 'rubocop', '~> 0.42'
 end
