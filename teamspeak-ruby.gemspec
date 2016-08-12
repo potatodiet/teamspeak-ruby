@@ -11,6 +11,8 @@ Gem::Specification.new do |s|
   s.require_paths = ['lib']
   s.homepage      = 'http://github.com/matthin/teamspeak-ruby'
   s.license       = 'MIT'
+  s.add_development_dependency 'guard', '~> 2.14'
+  s.add_development_dependency 'guard-shell', '~> 0.7'
   s.add_development_dependency 'minitest', '~> 5.8'
   s.add_development_dependency 'rake', '~> 11.2'
   s.add_development_dependency 'rubocop', '~> 0.42'
