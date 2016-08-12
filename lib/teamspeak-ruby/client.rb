@@ -105,10 +105,10 @@ module Teamspeak
       should_be_array = %w(
         bindinglist serverlist servergrouplist servergroupclientlist
         servergroupsbyclientid servergroupclientlist logview channellist
-        channelfind channelgrouplist channelgrouppermlist channelpermlist
-        clientlist clientfind clientdblist clientdbfind channelclientpermlist
-        permissionlist permoverview privilegekeylist messagelist complainlist
-        banlist ftlist custominfo permfind
+        channelfind channelgrouplist channelgroupclientlist channelgrouppermlist
+        channelpermlist clientlist clientfind clientdblist clientdbfind
+        channelclientpermlist permissionlist permoverview privilegekeylist
+        messagelist complainlist banlist ftlist custominfo permfind
       )
 
       parsed_response = parse_response(response)
