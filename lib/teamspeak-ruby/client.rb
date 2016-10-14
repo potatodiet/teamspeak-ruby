@@ -142,7 +142,7 @@ module Teamspeak
       return param.to_i if param.to_i.to_s == param
 
       SPECIAL_CHARS.each do |pair|
-        param.gsub!(pair[0], pair[1])
+        param = param.gsub(pair[0], pair[1])
       end
 
       param
@@ -150,7 +150,7 @@ module Teamspeak
 
     def encode_param(param)
       SPECIAL_CHARS.each do |pair|
-        param.gsub!(pair[1], pair[0])
+        param = param.gsub(pair[1], pair[0])
       end
 
       param
