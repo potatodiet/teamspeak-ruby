@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
   s.email         = 'me@justinharrison.ca'
   s.files         = Dir.glob('lib/**/*')
   s.require_paths = ['lib']
-  s.homepage      = 'http://github.com/matthin/teamspeak-ruby'
+  s.homepage      = 'https://github.com/matthin/teamspeak-ruby'
   s.license       = 'MIT'
   s.add_development_dependency 'guard', '~> 2.14'
   s.add_development_dependency 'guard-shell', '~> 0.7'
