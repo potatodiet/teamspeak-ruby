@@ -6,7 +6,7 @@ Gem::Specification.new do |s|
   s.date          = Date.today.to_s
   s.summary       = 'Ruby interface for TeamSpeak 3\'s server query api.'
   s.authors       = ['Justin Harrison']
-  s.email         = 'justin@matthin.com'
+  s.email         = 'me@justinharrison.ca'
   s.files         = Dir.glob('lib/**/*')
   s.require_paths = ['lib']
   s.homepage      = 'http://github.com/matthin/teamspeak-ruby'
