@@ -1,4 +1,5 @@
 require './lib/teamspeak-ruby/version'
+require 'date'
 
 Gem::Specification.new do |s|
   s.name          = 'teamspeak-ruby'
