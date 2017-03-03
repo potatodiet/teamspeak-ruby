@@ -22,11 +22,11 @@ require 'teamspeak-ruby'
 
 ts = Teamspeak::Client.new
 ts.login('serveradmin', 'T5I3A1G8')
-ts.command('use', {sid: 1})
+ts.command('use', sid: 1)
 
 ts.command('clientlist').each do |user|
   if user['client_nickname'] == 'Example Client'
-    ts.command('clientpoke', {clid: user['clid'], msg: 'Just an example!'})
+    ts.command('clientpoke', clid: user['clid'], msg: 'Just an example!')
   end
 end
 
