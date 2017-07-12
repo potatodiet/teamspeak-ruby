@@ -66,9 +66,10 @@ module Teamspeak
     # Authenticates with the TeamSpeak 3 server
     #
     #   login('serveradmin', 'H8YlK1f9')
-    def login(user, pass, sid = nil)
+    def login(user, pass, sid = nil, name = nil)
       command('login', client_login_name: user, client_login_password: pass)
       use(sid) unless sid == nil
+      rename(name) unless name == nil
     end
 
     # Say to the query to use the given sid
