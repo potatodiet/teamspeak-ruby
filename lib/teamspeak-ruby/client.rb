@@ -106,6 +106,15 @@ module Teamspeak
       command('gm', msg: params[:msg])
     end
 
+    # Kicks a client from channel
+    #
+    #   clientkick_from_channel(clid: 6, msg: "You have been kicked")
+    def clientkick_from_channel(params = {})
+      check_error([:clid], params)
+
+      command('clientkick', reasonid: 4, clid: params[:clid], reasonmsg: params[:msg])
+    end
+
     # Sends command to the TeamSpeak 3 server and returns the response
     #
     #   command('use', {'sid' => 1}, '-away')
