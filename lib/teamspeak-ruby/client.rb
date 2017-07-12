@@ -70,6 +70,15 @@ module Teamspeak
       command('login', client_login_name: user, client_login_password: pass)
     end
 
+    # Sends a poke to a client
+    #
+    #   clientpoke(clid: 6, msg: "This is a poke")
+    def clientpoke(params = {})
+      check_error([:clid, :msg], params)
+
+      command('clientpoke', clid: params[:clid], msg: params[:msg])
+    end
+
     # Sends command to the TeamSpeak 3 server and returns the response
     #
     #   command('use', {'sid' => 1}, '-away')
