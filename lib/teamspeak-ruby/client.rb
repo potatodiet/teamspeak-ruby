@@ -100,6 +100,13 @@ module Teamspeak
       command('clientupdate', client_nickname: new_name)
     end
 
+    # Returns info about the server
+    #
+    #   serverinfo()
+    def serverinfo()
+      command('serverinfo')
+    end
+
     # Returns the clients list
     #
     #   clientlist()
