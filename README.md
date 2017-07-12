@@ -1,7 +1,7 @@
 teamspeak-ruby
 ----------
-<a href="https://travis-ci.org/matthin/teamspeak-ruby" target="_blank"><img src="https://api.travis-ci.org/matthin/teamspeak-ruby.svg?branch=master" alt="Build Status"></a>
-<a href="https://rubygems.org/gems/teamspeak-ruby/" target="_blank"><img src="https://badge.fury.io/rb/teamspeak-ruby.png" alt="Gem Version"></a>
+[![Travis](https://img.shields.io/travis/matthin/teamspeak-ruby.svg)](https://travis-ci.org/matthin/teamspeak-ruby)
+[![Gem](https://img.shields.io/gem/v/teamspeak-ruby.svg)](https://rubygems.org/gems/teamspeak-ruby/)
 
 Ruby interface for TeamSpeak 3's [server query]
 (http://media.teamspeak.com/ts3_literature/TeamSpeak%203%20Server%20Query%20Manual.pdf) api.
