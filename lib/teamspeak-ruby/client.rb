@@ -48,9 +48,23 @@ module Teamspeak
       @sock = TCPSocket.new(host, port)
 
       # Check if the response is the same as a normal teamspeak 3 server.
-      if @sock.gets.strip != 'TS3'
-        msg = 'Server is not responding as a normal TeamSpeak 3 server.'
-        raise InvalidServer, msg
+      response = @sock.gets.strip
+      if response != 'TS3'
+        out = []
+        data = {}
+        response.split(' ').each do |key|
+          value = key.split('=', 2)
+
+          data[value[0]] = decode_param(value[1])
+        out.push(data)
+        end
+
+        id = out.first['id'] || 0
+        message = out.first['msg'] || 0
+        extra_message = out.first['extra_msg'] || 'none'
+
+        msg = "\r\nID=#{id}\r\nMESSAGE=#{message}\r\nEXTRA_MESSAGE=#{extra_message}"
+        raise InvalidServer, msg unless out == 'TS3'
       end
 
       # Remove useless text from the buffer.
