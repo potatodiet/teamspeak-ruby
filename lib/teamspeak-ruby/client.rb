@@ -70,6 +70,13 @@ module Teamspeak
       command('login', client_login_name: user, client_login_password: pass)
     end
 
+    # Say to the query to use the given sid
+    #
+    #   use(1)
+    def use(sid)
+      command('use', sid: sid)
+    end
+
     # Sends a poke to a client
     #
     #   clientpoke(clid: 6, msg: "This is a poke")
@@ -120,7 +127,7 @@ module Teamspeak
     #   clientkick_from_channel(clid: 6, msg: "You have been kicked")
     def clientkick_from_server(params = {})
       check_error([:clid], params)
-    
+
       command('clientkick', reasonid: 5, clid: params[:clid], reasonmsg: params[:msg])
     end
 
