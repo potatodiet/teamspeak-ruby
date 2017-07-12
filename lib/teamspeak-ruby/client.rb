@@ -97,6 +97,15 @@ module Teamspeak
       command('sendtextmessage', targetmode: 3, target: command('serverinfo')['virtualserver_id'], msg: params[:msg])
     end
 
+    # Sends a message to all clients
+    #
+    #   globalmessage(msg: "This is a global message")
+    def globalmessage(params = {})
+      check_error([:msg], params)
+
+      command('gm', msg: params[:msg])
+    end
+
     # Sends command to the TeamSpeak 3 server and returns the response
     #
     #   command('use', {'sid' => 1}, '-away')
