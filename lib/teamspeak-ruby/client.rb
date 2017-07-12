@@ -121,6 +121,14 @@ module Teamspeak
       command('instanceinfo')
     end
 
+    # Gets a client by his name
+    #
+    #   get_client_by_name('TriiNoxYs')
+    def get_client_by_name(name)
+      clients = command('clientfind', pattern: name)
+      clients.each { |client| return clientinfo(clid: client['clid']) if client['client_nickname'] == name }
+    end
+
     # Returns the clients list
     #
     #   clientlist()
