@@ -180,9 +180,16 @@ module Teamspeak
       end
     end
 
+    def check_error(expected_params, params)
+      expected_params.each do |param|
+        raise ArgumentError, "Missing argument :#{param}" unless params.has_key? param
+        raise ArgumentError, "Wrong numer of arguments (#{params.keys.size} for #{expected_params.size})" unless params.keys.size >= expected_params.size
+      end
+    end
+
     private(
       :parse_response, :decode_param, :encode_param,
-      :check_response_error, :flood_control
+      :check_error, :check_response_error, :flood_control
     )
   end
 end
