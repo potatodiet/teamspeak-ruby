@@ -94,6 +94,15 @@ module Teamspeak
     end
     alias_method :clients, :clientlist
 
+    # Returns info about a client
+    #
+    #   clientinfo(clid: 6)
+    def clientinfo(params = {})
+      check_error([:clid], params)
+
+      command('clientinfo', clid: params[:clid])
+    end
+
     # Sends a poke to a client
     #
     #   clientpoke(clid: 6, msg: "This is a poke")
