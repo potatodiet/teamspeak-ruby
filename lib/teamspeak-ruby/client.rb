@@ -123,8 +123,8 @@ module Teamspeak
 
     # Gets a client by his name
     #
-    #   get_client_by_name('TriiNoxYs')
-    def get_client_by_name(name)
+    #   getclient('TriiNoxYs')
+    def getclient(name)
       clients = command('clientfind', pattern: name)
       clients.each { |client| return clientinfo(clid: client['clid']) if client['client_nickname'] == name }
     end
