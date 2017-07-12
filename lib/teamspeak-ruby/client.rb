@@ -143,7 +143,7 @@ module Teamspeak
     #
     #   clientkick_from_channel(clid: 6, msg: "You have been kicked")
     def clientkick_from_channel(params = {})
-      check_error([:clid], params)
+      check_error([:clid], params, [:msg])
 
       command('clientkick', reasonid: 4, clid: params[:clid], reasonmsg: params[:msg])
     end
@@ -152,7 +152,7 @@ module Teamspeak
     #
     #   clientkick_from_channel(clid: 6, msg: "You have been kicked")
     def clientkick_from_server(params = {})
-      check_error([:clid], params)
+      check_error([:clid], params, [:msg])
 
       command('clientkick', reasonid: 5, clid: params[:clid], reasonmsg: params[:msg])
     end
@@ -267,11 +267,10 @@ module Teamspeak
       end
     end
 
-    def check_error(expected_params, params)
-      expected_params.each do |param|
-        raise ArgumentError, "Missing argument :#{param}" unless params.has_key? param
-        raise ArgumentError, "Wrong numer of arguments (#{params.keys.size} for #{expected_params.size})" unless params.keys.size >= expected_params.size
-      end
+    def check_error(mandatory, params, optional = [])
+      raise ArgumentError, "Wrong numer of arguments (#{params.keys.size} for #{mandatory.size})" unless params.keys.size >= mandatory.size
+      mandatory.each { |param| raise ArgumentError, "Missing argument :#{param}" unless params.has_key? param }
+      params.each_key { |param| raise ArgumentError, "Unknow argument :#{param}" unless (mandatory+optional).include? param }
     end
 
     private(
