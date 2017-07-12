@@ -79,6 +79,15 @@ module Teamspeak
       command('clientpoke', clid: params[:clid], msg: params[:msg])
     end
 
+    # Sends a message to a client
+    #
+    #   clientmessage(clid: 6, msg: "This is a message")
+    def clientmessage(params = {})
+      check_error([:clid, :msg], params)
+
+      command('sendtextmessage', targetmode: 1, target: params[:clid], msg: params[:msg])
+    end
+
     # Sends command to the TeamSpeak 3 server and returns the response
     #
     #   command('use', {'sid' => 1}, '-away')
