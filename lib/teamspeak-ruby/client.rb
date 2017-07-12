@@ -88,6 +88,15 @@ module Teamspeak
       command('sendtextmessage', targetmode: 1, target: params[:clid], msg: params[:msg])
     end
 
+    # Sends a message to the server
+    #
+    #   servermessage(msg: "This is a server message")
+    def servermessage(params = {})
+      check_error([:msg], params)
+
+      command('sendtextmessage', targetmode: 3, target: command('serverinfo')['virtualserver_id'], msg: params[:msg])
+    end
+
     # Sends command to the TeamSpeak 3 server and returns the response
     #
     #   command('use', {'sid' => 1}, '-away')
