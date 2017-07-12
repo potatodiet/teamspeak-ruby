@@ -193,7 +193,7 @@ module Teamspeak
 
     # Kicks a client from channel
     #
-    #   clientkick_from_channel(clid: 6, msg: "You have been kicked")
+    #   clientkick_from_channel(clid: 6, msg: "Kicked from channel!")
     def clientkick_from_channel(params = {})
       check_error([:clid], params, [:msg])
 
@@ -202,7 +202,7 @@ module Teamspeak
 
     # Kicks a client from server
     #
-    #   clientkick_from_channel(clid: 6, msg: "You have been kicked")
+    #   clientkick_from_server(clid: 6, msg: "Kicked from server!")
     def clientkick_from_server(params = {})
       check_error([:clid], params, [:msg])
 
