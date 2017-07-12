@@ -2,6 +2,7 @@ teamspeak-ruby
 ----------
 [![Travis](https://img.shields.io/travis/matthin/teamspeak-ruby.svg)](https://travis-ci.org/matthin/teamspeak-ruby)
 [![Gem](https://img.shields.io/gem/v/teamspeak-ruby.svg)](https://rubygems.org/gems/teamspeak-ruby/)
+[![Gem](https://img.shields.io/gem/dt/teamspeak-ruby.svg)](https://rubygems.org/gems/teamspeak-ruby/)
 
 Ruby interface for TeamSpeak 3's [server query]
 (http://media.teamspeak.com/ts3_literature/TeamSpeak%203%20Server%20Query%20Manual.pdf) api.
