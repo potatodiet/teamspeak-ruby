@@ -124,6 +124,15 @@ module Teamspeak
       command('clientinfo', clid: params[:clid])
     end
 
+    # Moves a client
+    #
+    #   clientmove(clid: 6, cid: 1, cpw: 'pass')
+    def clientmove(params = {})
+      check_error([:clid, :cid], params, [:cpw])
+
+      command('clientmove', clid: params[:clid], cid: params[:cid], cpw: params[:cpw])
+    end
+
     # Sends a poke to a client
     #
     #   clientpoke(clid: 6, msg: "This is a poke")
