@@ -114,6 +114,13 @@ module Teamspeak
       command('hostinfo')
     end
 
+    # Returns info about the current instance
+    #
+    #   instanceinfo()
+    def instanceinfo()
+      command('instanceinfo')
+    end
+
     # Returns the clients list
     #
     #   clientlist()
