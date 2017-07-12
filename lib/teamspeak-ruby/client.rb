@@ -78,6 +78,13 @@ module Teamspeak
       command('use', sid: sid)
     end
 
+    # Renames the query client
+    #
+    #   rename('Server Bot')
+    def rename(new_name)
+      command('clientupdate', client_nickname: new_name)
+    end
+
     # Sends a poke to a client
     #
     #   clientpoke(clid: 6, msg: "This is a poke")
