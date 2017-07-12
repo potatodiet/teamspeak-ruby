@@ -86,6 +86,14 @@ module Teamspeak
       command('clientupdate', client_nickname: new_name)
     end
 
+    # Returns the clients list
+    #
+    #   clientlist()
+    def clientlist()
+      command('clientlist')
+    end
+    alias_method :clients, :clientlist
+
     # Sends a poke to a client
     #
     #   clientpoke(clid: 6, msg: "This is a poke")
