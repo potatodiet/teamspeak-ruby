@@ -107,6 +107,13 @@ module Teamspeak
       command('serverinfo')
     end
 
+    # Returns info about the host
+    #
+    #   hostinfo()
+    def hostinfo()
+      command('hostinfo')
+    end
+
     # Returns the clients list
     #
     #   clientlist()
