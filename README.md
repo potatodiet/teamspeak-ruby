@@ -21,16 +21,17 @@ Usage
 require 'teamspeak-ruby'
 
 ts = Teamspeak::Client.new
-ts.login('serveradmin', 'T5I3A1G8')
-ts.command('use', sid: 1)
+ts.login('serveradmin', 'T5I3A1G8', 1, 'Server Bot')
 
-ts.command('clientlist').each do |user|
+ts.clientlist.each do |user|
   if user['client_nickname'] == 'Example Client'
-    ts.command('clientpoke', clid: user['clid'], msg: 'Just an example!')
+    ts.clientpoke(clid: user['clid'], msg: 'Just an example!')
   end
 end
 
-puts ts.command('hostinfo')['host_timestamp_utc']
+ts.clientmessage(clid: ts.getclient('Example Client')['clid'], msg: 'Another example!')
+
+puts ts.hostinfo['host_timestamp_utc']
 
 ts.disconnect
 ```
