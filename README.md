@@ -1,9 +1,7 @@
 teamspeak-ruby
 ----------
-[![Build Status](https://travis-ci.org/matthin/teamspeak-ruby.png?branch=master)]
-(https://travis-ci.org/matthin/teamspeak-ruby)
-[![Gem Version](https://badge.fury.io/rb/teamspeak-ruby.png)]
-(http://badge.fury.io/rb/teamspeak-ruby)
+[![Build Status](https://travis-ci.org/matthin/teamspeak-ruby.png?branch=master)](https://travis-ci.org/matthin/teamspeak-ruby)
+[![Gem Version](https://badge.fury.io/rb/teamspeak-ruby.png)](http://badge.fury.io/rb/teamspeak-ruby)
 
 Ruby interface for TeamSpeak 3's [server query]
 (http://media.teamspeak.com/ts3_literature/TeamSpeak%203%20Server%20Query%20Manual.pdf) api.
