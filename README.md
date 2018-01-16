@@ -1,13 +1,12 @@
 teamspeak-ruby
 ----------
-[![Build Status](https://travis-ci.org/matthin/teamspeak-ruby.png?branch=master)]
-(https://travis-ci.org/matthin/teamspeak-ruby)
-[![Gem Version](https://badge.fury.io/rb/teamspeak-ruby.png)]
-(http://badge.fury.io/rb/teamspeak-ruby)
+[![Travis](https://img.shields.io/travis/matthin/teamspeak-ruby.svg)](https://travis-ci.org/matthin/teamspeak-ruby)
+[![Gem](https://img.shields.io/gem/v/teamspeak-ruby.svg)](https://rubygems.org/gems/teamspeak-ruby/)
+[![Gem](https://img.shields.io/gem/dt/teamspeak-ruby.svg)](https://rubygems.org/gems/teamspeak-ruby/)
 
-Ruby interface for TeamSpeak 3's [server query]
-(http://media.teamspeak.com/ts3_literature/TeamSpeak%203%20Server%20Query%20Manual.pdf) api.
+Ruby interface for TeamSpeak 3's [Server Query](http://media.teamspeak.com/ts3_literature/TeamSpeak%203%20Server%20Query%20Manual.pdf) API.
 Built against the manual released on 2012-02-29.
+
 
 Install
 ----------
@@ -21,16 +20,17 @@ Usage
 require 'teamspeak-ruby'
 
 ts = Teamspeak::Client.new
-ts.login('serveradmin', 'T5I3A1G8')
-ts.command('use', sid: 1)
+ts.login('serveradmin', 'T5I3A1G8', 1, 'Server Bot')
 
-ts.command('clientlist').each do |user|
+ts.clientlist.each do |user|
   if user['client_nickname'] == 'Example Client'
-    ts.command('clientpoke', clid: user['clid'], msg: 'Just an example!')
+    ts.clientpoke(clid: user['clid'], msg: 'Just an example!')
   end
 end
 
-puts ts.command('hostinfo')['host_timestamp_utc']
+ts.clientmessage(clid: ts.getclient('Example Client')['clid'], msg: 'Another example!')
+
+puts ts.hostinfo['host_timestamp_utc']
 
 ts.disconnect
 ```
